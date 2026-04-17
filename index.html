@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarah Roberts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f9f7f4;
+      --charcoal: #1e1e1e;
+      --mid: #6b6b6b;
+      --accent: #2c5f8a;
+      --border: #e2ddd8;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
+    nav.navbar { background: #fff; border-bottom: 1px solid var(--border); }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--charcoal) !important; }
+    .nav-link { color: var(--mid) !important; font-size: 0.9rem; letter-spacing: 0.04em; }
+    .nav-link:hover { color: var(--accent) !important; }
+
+    .hero { padding: 100px 0 80px; background: #fff; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.1; margin-bottom: 1.25rem; }
+    .hero p.lead { color: var(--mid); font-size: 1.1rem; font-weight: 300; max-width: 520px; line-height: 1.75; }
+    .btn-primary-custom { background: var(--accent); color: #fff; border: none; padding: 12px 32px; border-radius: 2px; font-size: 0.9rem; letter-spacing: 0.05em; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-primary-custom:hover { background: #1e4a6e; color: #fff; }
+    .btn-outline-custom { border: 1px solid var(--charcoal); color: var(--charcoal); padding: 12px 32px; border-radius: 2px; font-size: 0.9rem; letter-spacing: 0.05em; text-decoration: none; display: inline-block; transition: all 0.2s; margin-left: 12px; }
+    .btn-outline-custom:hover { background: var(--charcoal); color: #fff; }
+
+    .section { padding: 80px 0; }
+    .section-label { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; margin-bottom: 2.5rem; }
+
+    .card-clean { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 2rem; height: 100%; transition: box-shadow 0.2s; }
+    .card-clean:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .card-icon { font-size: 1.5rem; color: var(--accent); margin-bottom: 1rem; }
+    .card-clean h5 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .card-clean p { color: var(--mid); font-size: 0.9rem; line-height: 1.7; margin: 0; }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag { background: var(--cream); border: 1px solid var(--border); padding: 6px 16px; border-radius: 2px; font-size: 0.85rem; color: var(--charcoal); }
+
+    .contact-link { color: var(--accent); text-decoration: none; font-size: 0.95rem; }
+    .contact-link:hover { text-decoration: underline; }
+
+    footer { background: var(--charcoal); color: #aaa; padding: 40px 0; font-size: 0.85rem; }
+    footer a { color: #aaa; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Sarah Roberts</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="resume.html">Résumé</a></li>
+        <li class="nav-item"><a class="nav-link" href="mailto:sarah.roberts@example.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <p class="hero-eyebrow">Business Student · BYU</p>
+        <h1>Hi, I'm<br>Sarah Roberts.</h1>
+        <p class="lead">A driven business student at Brigham Young University with a passion for strategy, people, and purpose. I'm building a career at the intersection of business and meaningful impact.</p>
+        <div class="mt-4">
+          <a href="resume.html" class="btn-primary-custom">View Résumé</a>
+          <a href="mailto:sarah.roberts@example.com" class="btn-outline-custom">Get in Touch</a>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 mt-5 mt-lg-0 text-center">
+        <div style="width:260px;height:260px;border-radius:50%;background:linear-gradient(135deg,#d6e8f5,#e8f0e8);margin:0 auto;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Playfair Display',serif;font-size:5rem;color:var(--accent);font-weight:600;">SR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- About -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <div class="col-md-7 offset-md-1">
+        <p style="color:var(--mid);line-height:1.85;font-size:1rem;">I'm a Business student at Brigham Young University with a strong foundation in marketing, management, and entrepreneurship. I'm passionate about solving real problems through thoughtful strategy and collaboration.</p>
+        <p style="color:var(--mid);line-height:1.85;font-size:1rem;margin-top:1rem;">Outside of class, you'll find me watching basketball, staying active, and exploring new ideas. I believe the best leaders are curious, empathetic, and willing to do the hard work.</p>
+        <div class="mt-4">
+          <div class="skills-grid">
+            <span class="skill-tag">Marketing</span>
+            <span class="skill-tag">Strategy</span>
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Project Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Highlights -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <p class="section-label text-center">Highlights</p>
+    <h2 class="section-title text-center">What I bring</h2>
+    <div class="row g-4 mt-1">
+      <div class="col-md-4">
+        <div class="card-clean">
+          <div class="card-icon"><i class="bi bi-mortarboard"></i></div>
+          <h5>Academic Excellence</h5>
+          <p>Maintaining a strong GPA at BYU's Marriott School of Business while engaging in coursework spanning finance, marketing, and organizational behavior.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-clean">
+          <div class="card-icon"><i class="bi bi-people"></i></div>
+          <h5>Leadership</h5>
+          <p>Experienced in team environments through student organizations, group projects, and community involvement. I lead by listening first.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-clean">
+          <div class="card-icon"><i class="bi bi-lightbulb"></i></div>
+          <h5>Creative Problem Solving</h5>
+          <p>Passionate about tackling ambiguous challenges with structured thinking. I enjoy breaking down complex problems into actionable steps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- Contact -->
+<section class="section" style="background:#fff;">
+  <div class="container text-center">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's connect</h2>
+    <p style="color:var(--mid);max-width:440px;margin:0 auto 2rem;">I'm always open to conversations about internships, opportunities, or just a good chat about business and basketball.</p>
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+      <a href="mailto:sarah.roberts@example.com" class="contact-link"><i class="bi bi-envelope me-2"></i>sarah.roberts@example.com</a>
+      <a href="https://linkedin.com/in/sarah-roberts" class="contact-link" target="_blank"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+      <a href="https://github.com/sarahroberts" class="contact-link" target="_blank"><i class="bi bi-github me-2"></i>GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <span>© 2025 Sarah Roberts</span>
+    <div class="d-flex gap-3">
+      <a href="https://linkedin.com/in/sarah-roberts" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/sarahroberts" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="mailto:sarah.roberts@example.com"><i class="bi bi-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

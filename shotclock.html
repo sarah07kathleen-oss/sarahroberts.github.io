@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shot Clock Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #222;
+      --orange: #e8821a;
+      --orange-light: #ffaa4d;
+      --red: #d63031;
+      --green: #00b894;
+      --text: #f0ede6;
+      --muted: #666;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 16px 60px;
+      user-select: none;
+    }
+
+    header {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0 0;
+    }
+
+    header a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    header a:hover { color: var(--orange); }
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin-top: 32px;
+    }
+
+    /* Scoreboard row */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .score-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .score-box .label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .score-box .value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .score-box .value.orange { color: var(--orange); }
+
+    /* Shot clock ring */
+    .clock-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 8px 0 20px;
+    }
+
+    .clock-ring {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin-bottom: 20px;
+    }
+
+    .clock-ring svg {
+      transform: rotate(-90deg);
+      width: 220px;
+      height: 220px;
+    }
+
+    .clock-ring .ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 10;
+    }
+
+    .clock-ring .ring-fill {
+      fill: none;
+      stroke: var(--orange);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 628;
+      stroke-dashoffset: 0;
+      transition: stroke 0.1s;
+    }
+
+    .clock-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .clock-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--text);
+      transition: color 0.15s;
+    }
+
+    .clock-sub {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Big tap button */
+    .tap-btn {
+      width: 100%;
+      padding: 22px;
+      background: var(--orange);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      color: #0d0d0d;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.08s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tap-btn:hover { background: var(--orange-light); }
+    .tap-btn:active { transform: scale(0.97); }
+    .tap-btn:disabled { background: #333; color: #555; cursor: default; transform: none; }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      cursor: pointer;
+      margin-top: 12px;
+      transition: all 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* Result flash */
+    .result-flash {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      min-height: 34px;
+      margin: 12px 0;
+      transition: opacity 0.3s;
+    }
+    .result-flash.good { color: var(--green); }
+    .result-flash.bad { color: var(--red); }
+    .result-flash.miss { color: var(--red); }
+
+    /* Difficulty pills */
+    .diff-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .diff-pill {
+      padding: 7px 20px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .diff-pill.active { border-color: var(--orange); color: var(--orange); background: rgba(232,130,26,0.08); }
+
+    /* History log */
+    .history {
+      margin-top: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .history-header {
+      padding: 10px 16px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .history-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .history-row:last-child { border-bottom: none; }
+    .history-row .h-round { color: var(--muted); }
+    .history-row .h-time { font-weight: 500; }
+    .history-row .h-result.good { color: var(--green); }
+    .history-row .h-result.bad { color: var(--red); }
+
+    /* End screen */
+    #end-screen {
+      text-align: center;
+      padding: 20px 0;
+      display: none;
+    }
+    #end-screen h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    #end-screen .final-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      color: var(--orange);
+      line-height: 1;
+    }
+    #end-screen .grade {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 8px 0 24px;
+    }
+
+    /* State color shifts */
+    .ring-fill.danger { stroke: var(--red); }
+    .ring-fill.warning { stroke: #f39c12; }
+    .clock-number.danger { color: var(--red); }
+
+    /* Instruction text */
+    .instructions {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="sports.html">← Back</a>
+  <h1>🏀 Shot Clock</h1>
+  <a href="index.html">Portfolio</a>
+</header>
+
+<div class="container">
+
+  <!-- Difficulty -->
+  <div class="diff-row" id="diff-row">
+    <button class="diff-pill" onclick="setDiff('rookie',this)">Rookie (24s)</button>
+    <button class="diff-pill active" onclick="setDiff('pro',this)">Pro (14s)</button>
+    <button class="diff-pill" onclick="setDiff('elite',this)">Elite (8s)</button>
+  </div>
+
+  <!-- Scoreboard -->
+  <div class="scoreboard">
+    <div class="score-box">
+      <div class="label">Score</div>
+      <div class="value orange" id="score-val">0</div>
+    </div>
+    <div class="score-box">
+      <div class="label">Round</div>
+      <div class="value" id="round-val">0/10</div>
+    </div>
+    <div class="score-box">
+      <div class="label">Best</div>
+      <div class="value" id="best-val">—</div>
+    </div>
+  </div>
+
+  <!-- Game area -->
+  <div id="game-area">
+    <!-- Instruction state -->
+    <div id="instruction-state">
+      <div class="clock-area">
+        <div class="clock-ring">
+          <svg viewBox="0 0 220 220">
+            <circle class="ring-bg" cx="110" cy="110" r="100"/>
+            <circle class="ring-fill" id="ring" cx="110" cy="110" r="100"/>
+          </svg>
+          <div class="clock-center">
+            <div class="clock-number" id="clock-num">24</div>
+            <div class="clock-sub">seconds</div>
+          </div>
+        </div>
+      </div>
+      <p class="instructions">Tap <strong>SHOOT!</strong> before the shot clock hits zero.<br>Score points for tapping early — big points for tapping close to zero!<br>Miss the clock and lose a point. 10 rounds total.</p>
+      <button class="tap-btn" id="start-btn" onclick="startGame()">START GAME</button>
+    </div>
+
+    <!-- Play state -->
+    <div id="play-state" style="display:none">
+      <div class="clock-area">
+        <div class="clock-ring">
+          <svg viewBox="0 0 220 220">
+            <circle class="ring-bg" cx="110" cy="110" r="100"/>
+            <circle class="ring-fill" id="ring2" cx="110" cy="110" r="100"/>
+          </svg>
+          <div class="clock-center">
+            <div class="clock-number" id="clock-num2">—</div>
+            <div class="clock-sub" id="clock-sub2">get ready</div>
+          </div>
+        </div>
+      </div>
+      <div class="result-flash" id="result-flash"></div>
+      <button class="tap-btn" id="shoot-btn" onclick="shoot()" disabled>SHOOT!</button>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div id="end-screen">
+    <h2>Game Over</h2>
+    <div class="final-score" id="final-score">0</div>
+    <div class="grade" id="final-grade"></div>
+    <button class="tap-btn" onclick="resetGame()">Play Again</button>
+    <button class="btn-secondary" onclick="window.location.href='sports.html'">Back to Sports Page</button>
+  </div>
+
+  <!-- History log -->
+  <div class="history" id="history-log" style="display:none">
+    <div class="history-header">Round History</div>
+    <div id="history-rows"></div>
+  </div>
+
+</div>
+
+<script>
+  const DIFFICULTIES = {
+    rookie: { time: 24, label: '24s' },
+    pro:    { time: 14, label: '14s' },
+    elite:  { time: 8,  label: '8s'  }
+  };
+  let diff = 'pro';
+  let maxTime = 14;
+  let score = 0, round = 0, totalRounds = 10;
+  let clockInterval = null, countdownInterval = null;
+  let timeLeft = 0, clockRunning = false;
+  let bestScore = null;
+  let history = [];
+  let waitingForShoot = false;
+  let preparingRound = false;
+
+  const CIRCUMFERENCE = 2 * Math.PI * 100; // ~628
+
+  function setDiff(d, btn) {
+    if (clockRunning || waitingForShoot) return;
+    diff = d;
+    maxTime = DIFFICULTIES[d].time;
+    document.querySelectorAll('.diff-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('clock-num').textContent = maxTime;
+  }
+
+  function startGame() {
+    score = 0; round = 0; history = [];
+    document.getElementById('history-rows').innerHTML = '';
+    document.getElementById('history-log').style.display = 'none';
+    document.getElementById('end-screen').style.display = 'none';
+    document.getElementById('instruction-state').style.display = 'none';
+    document.getElementById('play-state').style.display = 'block';
+    document.querySelectorAll('.diff-pill').forEach(b => b.disabled = true);
+    updateScoreboard();
+    nextRound();
+  }
+
+  function nextRound() {
+    if (round >= totalRounds) { endGame(); return; }
+    round++;
+    updateScoreboard();
+    waitingForShoot = false;
+    preparingRound = true;
+    document.getElementById('shoot-btn').disabled = true;
+    document.getElementById('result-flash').textContent = '';
+    document.getElementById('clock-sub2').textContent = 'get ready…';
+
+    setRing(document.getElementById('ring2'), 1, false);
+    document.getElementById('clock-num2').textContent = maxTime;
+    document.getElementById('clock-num2').classList.remove('danger');
+
+    const delay = 800 + Math.random() * 1200;
+    setTimeout(() => {
+      preparingRound = false;
+      startClock();
+    }, delay);
+  }
+
+  function startClock() {
+    timeLeft = maxTime;
+    clockRunning = true;
+    waitingForShoot = true;
+    document.getElementById('shoot-btn').disabled = false;
+    document.getElementById('clock-sub2').textContent = 'seconds';
+
+    const startTime = Date.now();
+    clockInterval = setInterval(() => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      timeLeft = Math.max(0, maxTime - elapsed);
+      const pct = timeLeft / maxTime;
+
+      const numEl = document.getElementById('clock-num2');
+      const ringEl = document.getElementById('ring2');
+      numEl.textContent = Math.ceil(timeLeft);
+
+      setRing(ringEl, pct, timeLeft <= maxTime * 0.35);
+      if (timeLeft <= maxTime * 0.35) numEl.classList.add('danger');
+      else numEl.classList.remove('danger');
+
+      if (timeLeft <= 0) {
+        clearInterval(clockInterval);
+        clockRunning = false;
+        waitingForShoot = false;
+        handleViolation();
+      }
+    }, 50);
+  }
+
+  function setRing(el, pct, danger) {
+    el.style.strokeDashoffset = CIRCUMFERENCE * (1 - pct);
+    el.classList.toggle('danger', danger && pct < 0.35);
+    el.classList.toggle('warning', pct < 0.6 && pct >= 0.35 && !danger);
+  }
+
+  function shoot() {
+    if (!waitingForShoot) return;
+    clearInterval(clockInterval);
+    clockRunning = false;
+    waitingForShoot = false;
+    document.getElementById('shoot-btn').disabled = true;
+
+    const elapsed = maxTime - timeLeft;
+    const pct = timeLeft / maxTime;
+    let pts, resultClass, resultText;
+
+    if (pct > 0.7) {
+      pts = 5; resultClass = 'bad'; resultText = `Early shot! +${pts} pts (shoot later for more!)`;
+    } else if (pct > 0.4) {
+      pts = 15; resultClass = 'good'; resultText = `Nice timing! +${pts} pts`;
+    } else if (pct > 0.15) {
+      pts = 25; resultClass = 'good'; resultText = `Great shot! +${pts} pts 🔥`;
+    } else {
+      pts = 40; resultClass = 'good'; resultText = `BUZZER BEATER! +${pts} pts 🏆`;
+    }
+
+    score += pts;
+    history.push({ round, time: timeLeft.toFixed(1), pts, result: resultClass });
+    addHistoryRow(round, timeLeft.toFixed(1) + 's left', '+' + pts, resultClass);
+    showFlash(resultText, resultClass);
+    updateScoreboard();
+
+    setTimeout(nextRound, 1400);
+  }
+
+  function handleViolation() {
+    document.getElementById('shoot-btn').disabled = true;
+    const penalty = -5;
+    score = Math.max(0, score + penalty);
+    history.push({ round, time: '0.0', pts: penalty, result: 'bad' });
+    addHistoryRow(round, 'VIOLATION', penalty, 'bad');
+    showFlash('Shot clock violation! -5 pts ⚠️', 'miss');
+    setRing(document.getElementById('ring2'), 0, true);
+    updateScoreboard();
+    setTimeout(nextRound, 1600);
+  }
+
+  function showFlash(msg, cls) {
+    const el = document.getElementById('result-flash');
+    el.textContent = msg;
+    el.className = 'result-flash ' + cls;
+  }
+
+  function addHistoryRow(r, time, pts, cls) {
+    const log = document.getElementById('history-log');
+    const rows = document.getElementById('history-rows');
+    log.style.display = 'block';
+    const row = document.createElement('div');
+    row.className = 'history-row';
+    row.innerHTML = `<span class="h-round">Round ${r}</span><span class="h-time">${time}</span><span class="h-result ${cls}">${pts}</span>`;
+    rows.appendChild(row);
+  }
+
+  function updateScoreboard() {
+    document.getElementById('score-val').textContent = score;
+    document.getElementById('round-val').textContent = round + '/' + totalRounds;
+  }
+
+  function endGame() {
+    document.getElementById('play-state').style.display = 'none';
+    document.getElementById('end-screen').style.display = 'block';
+    document.getElementById('final-score').textContent = score;
+
+    if (bestScore === null || score > bestScore) bestScore = score;
+    document.getElementById('best-val').textContent = bestScore;
+
+    const maxPossible = totalRounds * 40;
+    const pct = score / maxPossible;
+    let grade = pct >= 0.85 ? "MVP Performance! 🏆" : pct >= 0.65 ? "All-Star Level! ⭐" : pct >= 0.45 ? "Solid Pro Game 👍" : "Keep practicing! 💪";
+    document.getElementById('final-grade').textContent = grade + ` (${score}/${maxPossible} pts possible)`;
+  }
+
+  function resetGame() {
+    document.getElementById('end-screen').style.display = 'none';
+    document.getElementById('play-state').style.display = 'none';
+    document.getElementById('instruction-state').style.display = 'block';
+    document.getElementById('history-log').style.display = 'none';
+    document.getElementById('history-rows').innerHTML = '';
+    document.getElementById('best-val').textContent = bestScore !== null ? bestScore : '—';
+    document.querySelectorAll('.diff-pill').forEach(b => b.disabled = false);
+    score = 0; round = 0; history = [];
+    document.getElementById('score-val').textContent = 0;
+    document.getElementById('round-val').textContent = '0/10';
+    document.getElementById('clock-num').textContent = maxTime;
+    setRing(document.getElementById('ring'), 1, false);
+  }
+
+  // Init ring display
+  setRing(document.getElementById('ring'), 1, false);
+</script>
+</body>
+</html>

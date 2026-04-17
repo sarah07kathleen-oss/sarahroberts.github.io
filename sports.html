@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Love for Basketball — Sarah Roberts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Georgia&display=swap" rel="stylesheet" />
+  <!-- Custom stylesheet (from scratch, no Bootstrap) -->
+  <link rel="stylesheet" href="sports-style.css" />
+</head>
+<body>
+
+<!-- Navigation back to professional pages -->
+<nav id="site-nav">
+  <ul>
+    <li><a href="index.html">← Back to Portfolio</a></li>
+    <li><a href="#why-i-love-it">Why Basketball</a></li>
+    <li><a href="#stats">By the Numbers</a></li>
+    <li><a href="#watch">Watch</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#app">Play a Game</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div id="hero">
+  <span class="ball">🏀</span>
+  <h1>Basketball</h1>
+  <p class="tagline">A passion that never goes out of season</p>
+</div>
+
+<!-- Intro section -->
+<section id="intro">
+  <div class="two-col">
+    <div class="col">
+      <h2>The Game I <span class="accent">Love</span></h2>
+      <p>Basketball has been a part of my life for as long as I can remember. There's something magical about the combination of speed, skill, teamwork, and strategy that no other sport quite captures.</p>
+      <p style="margin-top:1rem;">From watching NBA playoffs with my family to playing pick-up games at the gym, basketball is more than a sport to me — it's a community, a language, and a way of understanding hard work and resilience.</p>
+    </div>
+    <div class="col">
+      <!-- Image not from Bootstrap theme -->
+      <img
+        class="sport-img"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Basketball.png/600px-Basketball.png"
+        alt="Basketball"
+      />
+      <p class="img-caption">The ball that started it all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Why I love basketball — on-page anchor target -->
+<section id="why-i-love-it" class="anchor-target">
+  <h2>Why I Love It</h2>
+  <p>Here are my top reasons basketball is the greatest sport in the world — no debate:</p>
+
+  <!-- Ordered list with unordered list embedded inside -->
+  <ol class="reasons">
+    <li>
+      <strong>The pace is electric</strong>
+      No other sport packs so many dramatic swings into 48 minutes. Every possession matters and momentum shifts in seconds.
+      <ul class="sub-list">
+        <li>A 20-point lead can evaporate in a single quarter</li>
+        <li>Buzzer beaters are unlike anything in sports</li>
+        <li>Overtime is genuinely terrifying (in the best way)</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Individual greatness shines</strong>
+      One transcendent player can change everything. The debate over GOAT status alone has produced more compelling arguments than most academic fields.
+      <ul class="sub-list">
+        <li>LeBron, MJ, Kobe, Bird, Magic — all unforgettable</li>
+        <li>Stars carry narratives that span decades</li>
+      </ul>
+    </li>
+    <li>
+      <strong>The global community</strong>
+      Basketball is played in every country. The NBA draws talent from across the world and unites fans of all backgrounds.
+      <ul class="sub-list">
+        <li>International players like Giannis and Luka have expanded the game's reach</li>
+        <li>The Olympics feature some of the most intense basketball on earth</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Strategy is endlessly deep</strong>
+      Coaching philosophies, lineup construction, defensive schemes, play design — basketball is chess at full speed.
+      <ul class="sub-list">
+        <li>The rise of analytics has transformed how teams are built</li>
+        <li>Small ball vs. traditional lineups, ISO vs. motion offense…</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<!-- Stats section -->
+<section id="stats" class="anchor-target">
+  <h2>By the <span class="accent">Numbers</span></h2>
+  <p>A few facts that show just how massive basketball really is:</p>
+  <div class="card-grid">
+    <div class="stat-card">
+      <div class="stat-number">450M+</div>
+      <div class="stat-label">Players worldwide</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">30</div>
+      <div class="stat-label">NBA franchises</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">213</div>
+      <div class="stat-label">Countries with national federations</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">1891</div>
+      <div class="stat-label">Year the sport was invented</div>
+    </div>
+  </div>
+</section>
+
+<!-- YouTube video section -->
+<section id="watch" class="anchor-target">
+  <h2>Must <span class="accent">Watch</span></h2>
+  <p>This highlight reel captures everything I love about basketball — the creativity, the athleticism, and the pure joy of the game.</p>
+  <div style="margin-top:1.5rem;">
+    <!-- Embedded YouTube video -->
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/mBkXHhRflFo"
+        title="NBA Greatest Moments"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="img-caption" style="margin-top:10px;">NBA — some of the most iconic moments in basketball history.</p>
+  </div>
+</section>
+
+<!-- Tableau section -->
+<div id="tableau-section">
+  <section id="data" class="anchor-target" style="max-width:900px;margin:0 auto;padding:0;">
+    <h2>Data &amp; <span class="accent">Viz</span></h2>
+    <p style="text-align:center;max-width:600px;margin:0 auto 2rem;font-family:'Georgia',serif;color:#888;">Explore interactive NBA data visualized below. Hover over the chart to dig into the numbers.</p>
+    <div class="tableau-wrap">
+      <!-- Live Tableau embed -->
+      <div class='tableauPlaceholder' id='viz1' style='position: relative; width:100%; min-height:500px;'>
+        <noscript>
+          <a href='#'>
+            <img alt='NBA Stats Dashboard' src='https://public.tableau.com/static/images/NB/NBA_Stats_16938745923370/Dashboard1/1_rss.png' style='border: none' />
+          </a>
+        </noscript>
+        <object class='tableauViz' style='display:none; width:100%; height:500px;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='NBAPlayerStats_17051234567/NBAStats' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+        </object>
+      </div>
+      <script type='text/javascript'>
+        var divElement = document.getElementById('viz1');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width = '100%';
+        vizElement.style.height = '500px';
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+      </script>
+      <p class="img-caption" style="margin-top:12px;">Source: Tableau Public — NBA Player Stats Dashboard. <a href="https://public.tableau.com/app/discover" target="_blank" style="color:#e8821a;">Find more on Tableau Public →</a></p>
+      <p class="img-caption" style="margin-top:6px;color:#e8821a;">⚠ Replace the Tableau embed above with your chosen visualization from <a href="https://public.tableau.com/app/discover" target="_blank" style="color:#e8821a;">public.tableau.com</a> — search "NBA" and click Share → Embed.</p>
+    </div>
+  </section>
+</div>
+
+<!-- Web App section -->
+<section id="app" class="anchor-target" style="text-align:center;">
+  <h2>Play a <span class="accent">Game</span></h2>
+  <p>Think you have the reflexes of an NBA player? Test your reaction time with the Shot Clock Challenge — tap before the buzzer!</p>
+  <a href="shotclock.html" class="btn-app">🏀 Play Shot Clock Challenge</a>
+</section>
+
+<!-- Footer -->
+<footer id="page-footer">
+  <p>Made with 🏀 by Sarah Roberts · <a href="index.html">Back to Portfolio</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résumé — Sarah Roberts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f9f7f4;
+      --charcoal: #1e1e1e;
+      --mid: #6b6b6b;
+      --accent: #2c5f8a;
+      --border: #e2ddd8;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
+    nav.navbar { background: #fff; border-bottom: 1px solid var(--border); }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--charcoal) !important; }
+    .nav-link { color: var(--mid) !important; font-size: 0.9rem; letter-spacing: 0.04em; }
+    .nav-link:hover { color: var(--accent) !important; }
+
+    .resume-header { background: #fff; border-bottom: 1px solid var(--border); padding: 60px 0 50px; }
+    .resume-header h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .resume-header .tagline { color: var(--mid); font-size: 1rem; font-weight: 300; }
+    .resume-header .contact-bar { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 20px; }
+    .resume-header .contact-bar a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+    .resume-header .contact-bar a:hover { text-decoration: underline; }
+
+    .resume-body { padding: 60px 0 80px; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+    .section-heading { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; }
+
+    .entry { margin-bottom: 1.75rem; }
+    .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; margin-bottom: 0.25rem; }
+    .entry-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; }
+    .entry-org { font-size: 0.9rem; color: var(--accent); font-weight: 500; }
+    .entry-date { font-size: 0.82rem; color: var(--mid); white-space: nowrap; }
+    .entry-desc { color: var(--mid); font-size: 0.9rem; line-height: 1.75; }
+    .entry ul { margin: 0.5rem 0 0 1rem; padding: 0; }
+    .entry ul li { color: var(--mid); font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.2rem; }
+
+    .skills-section { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { display: flex; gap: 12px; align-items: flex-start; }
+    .skill-cat { font-size: 0.82rem; color: var(--mid); min-width: 120px; padding-top: 6px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { background: #fff; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px; font-size: 0.83rem; color: var(--charcoal); }
+
+    .honors-list { list-style: none; padding: 0; margin: 0; }
+    .honors-list li { font-size: 0.9rem; color: var(--mid); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+    .honors-list li:last-child { border-bottom: none; }
+
+    footer { background: var(--charcoal); color: #aaa; padding: 40px 0; font-size: 0.85rem; }
+    footer a { color: #aaa; text-decoration: none; }
+    footer a:hover { color: #fff; }
+    @media print {
+      nav, footer { display: none; }
+      body { background: #fff; }
+      .resume-body { padding: 20px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Sarah Roberts</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active fw-medium" href="resume.html">Résumé</a></li>
+        <li class="nav-item"><a class="nav-link" href="mailto:sarah.roberts@example.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="resume-header">
+  <div class="container">
+    <h1>Sarah Roberts</h1>
+    <p class="tagline">Business Student · Brigham Young University · Class of 2026</p>
+    <div class="contact-bar">
+      <a href="mailto:sarah.roberts@example.com"><i class="bi bi-envelope me-1"></i>sarah.roberts@example.com</a>
+      <a href="https://linkedin.com/in/sarah-roberts" target="_blank"><i class="bi bi-linkedin me-1"></i>linkedin.com/in/sarah-roberts</a>
+      <span style="color:var(--mid);font-size:0.9rem;"><i class="bi bi-geo-alt me-1"></i>Provo, UT</span>
+    </div>
+  </div>
+</div>
+
+<div class="resume-body">
+  <div class="container" style="max-width:780px;">
+
+    <!-- Education -->
+    <p class="section-heading">Education</p>
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">Bachelor of Science in Business Management</div>
+          <div class="entry-org">Brigham Young University — Marriott School of Business</div>
+        </div>
+        <div class="entry-date">Sep 2022 – Apr 2026</div>
+      </div>
+      <p class="entry-desc mt-2">GPA: 3.7 · Provo, Utah<br>Relevant coursework: Business Strategy, Marketing Management, Organizational Behavior, Financial Accounting, Business Analytics, Business Communications</p>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Experience -->
+    <p class="section-heading">Work Experience</p>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">Marketing Intern</div>
+          <div class="entry-org">Acme Corp — Salt Lake City, UT</div>
+        </div>
+        <div class="entry-date">May 2024 – Aug 2024</div>
+      </div>
+      <ul>
+        <li>Assisted with social media strategy, increasing engagement by 18% over the summer period.</li>
+        <li>Conducted competitive market analysis and presented findings to a team of 12 marketing professionals.</li>
+        <li>Collaborated on email campaign design resulting in a 22% open rate improvement.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">Sales Associate</div>
+          <div class="entry-org">Campus Bookstore — BYU</div>
+        </div>
+        <div class="entry-date">Sep 2022 – Apr 2024</div>
+      </div>
+      <ul>
+        <li>Provided customer service to 100+ students and faculty weekly in a fast-paced retail environment.</li>
+        <li>Trained three new employees on point-of-sale systems and customer service protocols.</li>
+        <li>Recognized as Employee of the Month (November 2023) for consistent performance and attitude.</li>
+      </ul>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Leadership & Activities -->
+    <p class="section-heading">Leadership &amp; Activities</p>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">Vice President of Marketing</div>
+          <div class="entry-org">BYU Business Student Association</div>
+        </div>
+        <div class="entry-date">Sep 2023 – Present</div>
+      </div>
+      <ul>
+        <li>Lead a committee of 8 students to plan and market campus business events attended by 300+ students.</li>
+        <li>Redesigned club's social media presence, growing Instagram following by 40% in one semester.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div>
+          <div class="entry-title">Volunteer Mentor</div>
+          <div class="entry-org">Provo High School — Business Mentorship Program</div>
+        </div>
+        <div class="entry-date">Jan 2024 – Present</div>
+      </div>
+      <ul>
+        <li>Mentor two high school juniors exploring careers in business and entrepreneurship.</li>
+        <li>Facilitate monthly workshops on resume writing and interview preparation.</li>
+      </ul>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Skills -->
+    <p class="section-heading">Skills</p>
+    <div class="skills-section">
+      <div class="skill-row">
+        <span class="skill-cat">Software</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+          <span class="skill-tag">Word</span>
+          <span class="skill-tag">Google Suite</span>
+          <span class="skill-tag">Canva</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Business</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Market Research</span>
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Strategic Planning</span>
+          <span class="skill-tag">Project Management</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Soft Skills</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Public Speaking</span>
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Team Collaboration</span>
+          <span class="skill-tag">Written Communication</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Languages</span>
+        <div class="skill-tags">
+          <span class="skill-tag">English (Native)</span>
+          <span class="skill-tag">Spanish (Conversational)</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Honors -->
+    <p class="section-heading">Honors &amp; Awards</p>
+    <ul class="honors-list">
+      <li><span>Dean's List — Marriott School of Business</span><span>2022, 2023, 2024</span></li>
+      <li><span>BYU Presidential Scholarship</span><span>2022–Present</span></li>
+      <li><span>Employee of the Month — Campus Bookstore</span><span>Nov 2023</span></li>
+      <li><span>1st Place — BYU Case Competition (Marketing Track)</span><span>Mar 2024</span></li>
+    </ul>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <span>© 2025 Sarah Roberts</span>
+    <div class="d-flex gap-3">
+      <a href="https://linkedin.com/in/sarah-roberts" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/sarahroberts" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="mailto:sarah.roberts@example.com"><i class="bi bi-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
